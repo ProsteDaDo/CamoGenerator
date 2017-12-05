@@ -32,3 +32,4 @@ Here are my experiments with generating camouflage patterns from photos. These a
 * genetic.py and averageModus.py need a lot of refactoring
   * separate averageModus.py in two
 * make some "main" function that take some config file and runs particular script with set parameters
+* create GUI with preview and settings and stuff
