@@ -25,14 +25,14 @@ def evaluate(camoIm, envIm, envW, envH, num=1):
     return sum(results)/len(results)
 
 
-def loadEnvironment(name):
+def load_environment(name):
     image = Image.open("environments/" + name)
     image = image.convert("RGB")
     x, y = image.size
     return image, x, y
 
 
-def randomImage():
+def random_image():
     im = Image.new("RGB", (SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE))
 
     data = []
@@ -43,10 +43,10 @@ def randomImage():
     im.resize((BIG_IMAGE_SIZE, BIG_IMAGE_SIZE), Image.NEAREST)
     return im
 
-def whiteImage():
+def white_image():
     return Image.new("RGB", (50, 50), "white")
 
-def updatePattern(im, updateNum, updateAmount):
+def update_pattern(im, updateNum, updateAmount):
     imSmall = im.resize((SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE), Image.NEAREST)
     data = list(imSmall.getdata())
 
@@ -72,10 +72,10 @@ def updatePattern(im, updateNum, updateAmount):
     im = imSmall.resize((BIG_IMAGE_SIZE, BIG_IMAGE_SIZE), Image.NEAREST)
     return im
 
-def geneticPattern(envName, generationNum, patternNum = 100, updateNum = 20, updateAmount = 50):
-    patterns = [randomImage() for i in range(0, patternNum)]
+def genetic_pattern(envName, generationNum, patternNum = 100, updateNum = 20, updateAmount = 50):
+    patterns = [random_image() for i in range(0, patternNum)]
 
-    envIm, envW, envH = loadEnvironment(envName)
+    envIm, envW, envH = load_environment(envName)
 
     for i in range(0, generationNum):
         print("Generation", i)
@@ -89,9 +89,9 @@ def geneticPattern(envName, generationNum, patternNum = 100, updateNum = 20, upd
         patterns = patterns[0:patternNum//2] + copy.deepcopy(patterns[0:patternNum//2])
 
         for i in range(0, patternNum//2):
-            patterns[i] = updatePattern(patterns[i], updateNum, updateAmount)
+            patterns[i] = update_pattern(patterns[i], updateNum, updateAmount)
 
-geneticPattern("forest1.jpg", 1000)
+genetic_pattern("forest1.jpg", 1000)
 
 #envIm, envW, envH = loadEnvironment("forest1.jpg")
 #camoIm = Image.open("camos/gen0.png")

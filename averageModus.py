@@ -11,7 +11,7 @@ BIG_TILE_NUMBER = 10
 FINAL_SIZE = 200
 
 
-def averagePixels(a):
+def average_pixels(a):
     pixel = [0, 0, 0]
 
     for i in a:
@@ -25,7 +25,7 @@ def averagePixels(a):
 
     return tuple(pixel)
 
-def modusPixels(a, threshold = 32):
+def modus_pixels(a, threshold = 32):
     pixel = {}
 
     for i in a:
@@ -73,7 +73,7 @@ for im in images:
             tiles.append(list(im.crop((x, y, x + TILE_SIZE, y + TILE_SIZE)).getdata()))"""
 
 tiles = list(zip(*tiles))
-tilesAverage = [modusPixels(x) for x in tiles]
+tilesAverage = [modus_pixels(x) for x in tiles]
 
 im2 = Image.new("RGB", (FINAL_SIZE, FINAL_SIZE))
 im2.putdata(tilesAverage)
